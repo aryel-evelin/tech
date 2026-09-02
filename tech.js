@@ -13,14 +13,10 @@ function updateLanguage(lang) {
 
     const resumeLink = document.getElementById('resume-link');
 
-    // URL base absoluta do repositório tech
-    const baseUrl = 'https://aryel-evelin.github.io/tech/';
-
-    // Aponta para os PDFs com o prefixo do repositório correto
     if (lang === 'pt') {
-        if (resumeLink) resumeLink.href = baseUrl + 'curriculo_tech_pt.pdf';
+        if (resumeLink) resumeLink.href = '../curriculo_pt.pdf';
     } else {
-        if (resumeLink) resumeLink.href = baseUrl + 'curriculo_tech_en.pdf';
+        if (resumeLink) resumeLink.href = '../curriculo_en.pdf';
     }
 
     document.querySelectorAll('[data-pt]').forEach(el => {
@@ -36,20 +32,24 @@ function toggleLanguage() {
     updateLanguage(newLang);
 }
 
-function shareLink() {
+function shareTech() {
+    const isPt = currentLang === 'pt';
+    
     const shareData = {
-        title: 'Aryel Evelin | Tech, Produto, Processos & IA',
-        text: 'Technical Product Manager. Especialista em mapeamento BPMN premiado, conformidade LGPD, atuação T-Shaped, integração de IA e automação.',
-        url: 'https://aryel-evelin.github.io/tech/'
+        title: 'Aryel Evelin | Tech & Product Portfolio',
+        text: isPt 
+            ? 'Confira o portfólio Tech, Produto, Processos (BPMN) e IA de Aryel Evelin.' 
+            : 'Explore Aryel Evelin\'s Tech, Product Management, BPMN, and AI portfolio.',
+        url: window.location.href
     };
 
     if (navigator.share) {
         navigator.share(shareData).catch(() => {});
     } else {
         navigator.clipboard.writeText(shareData.url);
-        const alertMsg = document.documentElement.lang === 'pt-BR' 
-            ? 'Link copiado para a área de transferência!' 
-            : 'Link copied to clipboard!';
+        const alertMsg = isPt 
+            ? 'Link do portfólio Tech copiado para a área de transferência!' 
+            : 'Tech portfolio link copied to clipboard!';
         alert(alertMsg);
     }
 }
