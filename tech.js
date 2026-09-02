@@ -1,4 +1,3 @@
-// Gerenciamento de Idioma e Links Locais Dinâmicos (PT | EN)
 let currentLang = localStorage.getItem('pref_lang');
 
 if (!currentLang) {
@@ -14,12 +13,14 @@ function updateLanguage(lang) {
 
     const resumeLink = document.getElementById('resume-link');
 
+    // Alterna o link do currículo de acordo com o idioma ativo
     if (lang === 'pt') {
-        if (resumeLink) resumeLink.href = '../curriculo_pt.pdf';
+        if (resumeLink) resumeLink.href = './curriculo_pt.pdf';
     } else {
-        if (resumeLink) resumeLink.href = '../curriculo_en.pdf';
+        if (resumeLink) resumeLink.href = './curriculo_en.pdf';
     }
 
+    // Traduz os textos com atributos data-pt e data-en
     document.querySelectorAll('[data-pt]').forEach(el => {
         const text = el.getAttribute(`data-${lang}`);
         if (text) {
@@ -33,24 +34,26 @@ function toggleLanguage() {
     updateLanguage(newLang);
 }
 
-// Funções de Compartilhamento Inteligente
-function shareLink() {
+function shareHub() {
+    const isPt = currentLang === 'pt';
+    
     const shareData = {
-        title: 'Aryel Evelin | Tech, Produto, Processos & IA',
-        text: 'Technical Product Manager. Especialista em mapeamento BPMN premiado, conformidade LGPD, atuação T-Shaped, integração de IA e automação.',
-        url: 'https://aryel-evelin.github.io/portfolio/tech/'
+        title: 'Aryel Evelin | T-Shaped Portfolio',
+        text: isPt 
+            ? 'A conexão definitiva entre Produto, Tecnologia e Marketing. Conheça o portfólio T-Shaped de Aryel Evelin.' 
+            : 'The ultimate connection between Product, Technology, and Marketing. Explore Aryel Evelin\'s T-Shaped portfolio.',
+        url: window.location.href
     };
 
     if (navigator.share) {
         navigator.share(shareData).catch(() => {});
     } else {
         navigator.clipboard.writeText(shareData.url);
-        const alertMsg = document.documentElement.lang === 'pt-BR' 
-            ? 'Link copiado para a área de transferência!' 
-            : 'Link copied to clipboard!';
+        const alertMsg = isPt 
+            ? 'Link do Hub copiado para a área de transferência!' 
+            : 'Hub link copied to clipboard!';
         alert(alertMsg);
     }
 }
 
-// Aplica o idioma ao carregar a página
 document.addEventListener('DOMContentLoaded', () => updateLanguage(currentLang));
