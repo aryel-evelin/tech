@@ -1,3 +1,4 @@
+// Gerenciamento de Idioma e Links Locais Dinâmicos (PT | EN)
 let currentLang = localStorage.getItem('pref_lang');
 
 if (!currentLang) {
@@ -32,26 +33,24 @@ function toggleLanguage() {
     updateLanguage(newLang);
 }
 
-function shareTech() {
-    const isPt = currentLang === 'pt';
-    
+// Funções de Compartilhamento Inteligente
+function shareLink() {
     const shareData = {
-        title: 'Aryel Evelin | Tech & Product Portfolio',
-        text: isPt 
-            ? 'Confira o portfólio Tech, Produto, Processos (BPMN) e IA de Aryel Evelin.' 
-            : 'Explore Aryel Evelin\'s Tech, Product Management, BPMN, and AI portfolio.',
-        url: window.location.href
+        title: 'Aryel Evelin | Tech, Produto, Processos & IA',
+        text: 'Technical Product Manager. Especialista em mapeamento BPMN premiado, conformidade LGPD, atuação T-Shaped, integração de IA e automação.',
+        url: 'https://aryel-evelin.github.io/portfolio/tech/'
     };
 
     if (navigator.share) {
         navigator.share(shareData).catch(() => {});
     } else {
         navigator.clipboard.writeText(shareData.url);
-        const alertMsg = isPt 
-            ? 'Link do portfólio Tech copiado para a área de transferência!' 
-            : 'Tech portfolio link copied to clipboard!';
+        const alertMsg = document.documentElement.lang === 'pt-BR' 
+            ? 'Link copiado para a área de transferência!' 
+            : 'Link copied to clipboard!';
         alert(alertMsg);
     }
 }
 
+// Aplica o idioma ao carregar a página
 document.addEventListener('DOMContentLoaded', () => updateLanguage(currentLang));
