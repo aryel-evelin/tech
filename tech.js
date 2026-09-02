@@ -15,9 +15,9 @@ function updateLanguage(lang) {
     const resumeLink = document.getElementById('resume-link');
 
     if (lang === 'pt') {
-        if (resumeLink) resumeLink.href = '../curriculo_pt.pdf';
+        if (resumeLink) resumeLink.href = '../curriculo_tech_pt.pdf';
     } else {
-        if (resumeLink) resumeLink.href = '../curriculo_en.pdf';
+        if (resumeLink) resumeLink.href = '../curriculo_tech_en.pdf';
     }
 
     document.querySelectorAll('[data-pt]').forEach(el => {
