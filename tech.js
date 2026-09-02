@@ -1,4 +1,3 @@
-// Gerenciamento de Idioma e Links Locais Dinâmicos (PT | EN)
 let currentLang = localStorage.getItem('pref_lang');
 
 if (!currentLang) {
@@ -14,10 +13,13 @@ function updateLanguage(lang) {
 
     const resumeLink = document.getElementById('resume-link');
 
+    // URL base fixa e absoluta para o seu GitHub Pages
+    const baseUrl = 'https://aryel-evelin.github.io/portfolio/';
+
     if (lang === 'pt') {
-        if (resumeLink) resumeLink.href = '../curriculo_tech_pt.pdf';
+        if (resumeLink) resumeLink.href = baseUrl + 'curriculo_tech_pt.pdf';
     } else {
-        if (resumeLink) resumeLink.href = '../curriculo_tech_en.pdf';
+        if (resumeLink) resumeLink.href = baseUrl + 'curriculo_tech_en.pdf';
     }
 
     document.querySelectorAll('[data-pt]').forEach(el => {
