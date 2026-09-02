@@ -14,7 +14,7 @@ function updateLanguage(lang) {
     const resumeLink = document.getElementById('resume-link');
 
     // URL base fixa e absoluta para o seu GitHub Pages
-    const baseUrl = 'https://aryel-evelin.github.io/portfolio/';
+    const baseUrl = 'https://aryel-evelin.github.io/tech/';
 
     if (lang === 'pt') {
         if (resumeLink) resumeLink.href = baseUrl + 'curriculo_tech_pt.pdf';
@@ -40,7 +40,7 @@ function shareLink() {
     const shareData = {
         title: 'Aryel Evelin | Tech, Produto, Processos & IA',
         text: 'Technical Product Manager. Especialista em mapeamento BPMN premiado, conformidade LGPD, atuação T-Shaped, integração de IA e automação.',
-        url: 'https://aryel-evelin.github.io/portfolio/tech/'
+        url: 'https://aryel-evelin.github.io/tech/'
     };
 
     if (navigator.share) {
