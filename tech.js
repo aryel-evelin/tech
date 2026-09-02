@@ -13,9 +13,10 @@ function updateLanguage(lang) {
 
     const resumeLink = document.getElementById('resume-link');
 
-    // URL base fixa e absoluta para o seu GitHub Pages
+    // URL base fixa e absoluta para o seu repositório tech
     const baseUrl = 'https://aryel-evelin.github.io/tech/';
 
+    // Apontando para os nomes corretos que você definiu
     if (lang === 'pt') {
         if (resumeLink) resumeLink.href = baseUrl + 'curriculo_tech_pt.pdf';
     } else {
